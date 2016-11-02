@@ -7,7 +7,7 @@ import (
 
   "github.com/gorilla/mux"
 
-  "github.com/cyrusaf/fifa-api-golang/models"
+  "github.com/cyrusaf/fifa17-api-golang/models"
 )
 
 func addUserRoutes(r *mux.Router) {

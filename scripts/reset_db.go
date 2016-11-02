@@ -2,7 +2,7 @@ package main
 
 import (
   "fmt"
-  "github.com/cyrusaf/fifa-api-golang/models"
+  "github.com/cyrusaf/fifa17-api-golang/models"
   _ "github.com/jinzhu/gorm/dialects/postgres"
 )
 

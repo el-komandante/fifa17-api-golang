@@ -10,7 +10,7 @@ import (
 
   "github.com/codegangsta/negroni"
 
-  "github.com/cyrusaf/fifa-api-golang/models"
+  "github.com/cyrusaf/fifa17-api-golang/models"
 )
 
 type HttpError struct {
