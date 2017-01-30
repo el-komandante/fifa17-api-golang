@@ -1,7 +1,7 @@
 package main
 
 import (
-  "github.com/cyrusaf/fifa17-api-golang/routes"
+  "github.com/el-komandante/fifa17-api-golang/routes"
   _ "net/http/pprof"
   "net/http"
   "log"

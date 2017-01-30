@@ -1,8 +1,8 @@
 package models
 
 import (
-  "os"
   "strconv"
+  "time"
 
   "github.com/jinzhu/gorm"
   _ "github.com/jinzhu/gorm/dialects/postgres"
@@ -23,7 +23,8 @@ var DB *gorm.DB
 
 func init() {
   var err interface{}
-  DB, err = gorm.Open("postgres", "user=" + os.Getenv("PG_USER") + " dbname=fifa17 password=" + os.Getenv("PG_PASSWORD") + " sslmode=disable")
+  time.Sleep(time.Duration(10) * time.Second)
+  DB, err = gorm.Open("postgres", "postgres://postgres:postgres@postgres/postgres?sslmode=disable")
   if err != nil {
     panic(err)
   }

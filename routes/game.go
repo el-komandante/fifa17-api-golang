@@ -4,10 +4,12 @@ import (
   "encoding/json"
   "net/http"
   "strconv"
+  "strings"
+  "encoding/base64"
 
   "github.com/gorilla/mux"
 
-  "github.com/cyrusaf/fifa17-api-golang/models"
+  "github.com/el-komandante/fifa17-api-golang/models"
 )
 
 func addGameRoutes(r *mux.Router) {
@@ -25,6 +27,32 @@ type CreateGameReq struct {
   LoserGoals int `json:"loser_goals"`
 }
 func createGameHandler(w http.ResponseWriter, req *http.Request) {
+  //Basic auth
+  w.Header().Set("WWW-Authenticate", `Basic realm="Restricted"`)
+
+	s := strings.SplitN(req.Header.Get("Authorization"), " ", 2)
+	if len(s) != 2 {
+		http.Error(w, "Not authorized", 401)
+		return
+	}
+
+	b, decodeErr := base64.StdEncoding.DecodeString(s[1])
+	if decodeErr != nil {
+		http.Error(w, decodeErr.Error(), 401)
+		return
+	}
+
+	pair := strings.SplitN(string(b), ":", 2)
+	if len(pair) != 2 {
+		http.Error(w, "Not authorized", 401)
+		return
+	}
+
+	if pair[0] != " " || pair[1] != "fleming" {
+		http.Error(w, "Not authorized", 401)
+		return
+	}
+
   // Get JSON request data
   decoder := json.NewDecoder(req.Body)
 
